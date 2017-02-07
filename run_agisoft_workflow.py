@@ -4,8 +4,11 @@ import os
 # Directory containing all photos
 input_directory = './'
 
+doc = PhotoScan.app.document
+
 # Add a new chunk to the current document
 chunk = PhotoScan.app.document.addChunk()
+doc.save(path = "project.psz", chunks = [chunk])
 
 # Add all photos in input_directory to current chunk
 photo_files = [file.path for file in os.scandir(input_directory) if file.path.endswith('.jpg')]
@@ -23,3 +26,4 @@ chunk.buildModel(surface=PhotoScan.Arbitrary, interpolation=PhotoScan.EnabledInt
 # build textures
 chunk.buildUV(mapping=PhotoScan.GenericMapping)
 chunk.buildTexture(blending=PhotoScan.MosaicBlending, size=4096)
+doc.save(path = "project.psz", chunks = [chunk])
