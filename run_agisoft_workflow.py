@@ -1,9 +1,14 @@
 import PhotoScan
 import os
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("input_directory", help="Name of directory to process")
+args = parser.parse_args()
 
 # Directory containing all photos
-input_directory = './'
-
+input_directory = args.input_directory
+print("Input directory={0}".format(input_directory))
 doc = PhotoScan.app.document
 
 # Add a new chunk to the current document
@@ -11,7 +16,7 @@ chunk = PhotoScan.app.document.addChunk()
 doc.save(path = "project.psz", chunks = [chunk])
 
 # Add all photos in input_directory to current chunk
-photo_files = [file.path for file in os.scandir(input_directory) if file.path.endswith('.jpg')]
+photo_files = [file.path for file in os.scandir(input_directory) if file.path.endswith('.JPG')]
 chunk.addPhotos(photo_files)
 
 # Align cameras
