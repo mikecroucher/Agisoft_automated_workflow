@@ -1,6 +1,7 @@
 import httplib2
 import os
 import io
+import argparse
 
 from apiclient import discovery
 from apiclient.http import MediaIoBaseDownload
@@ -14,12 +15,11 @@ SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
 CLIENT_SECRET_FILE = 'client_secrets.json'
 APPLICATION_NAME = 'Drive API Python Quickstart'
 
-try:
-    import argparse
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-except ImportError:
-    flags = None
-    
+parser = argparse.ArgumentParser(parents=[tools.argparser])
+parser.add_argument("dirname", help="Name of directory to download")
+flags = parser.parse_args()
+dirname = flags.dirname
+print("Downloading from {0}".format(dirname))
 print(flags)
 
 def get_credentials():
@@ -53,7 +53,6 @@ def get_credentials():
 credentials = get_credentials()
 http = credentials.authorize(httplib2.Http())
 drive_service = discovery.build('drive', 'v3', http=http)
-dirname = 'Photogrammetry Group 3'
 
 def find_id_of_dir(dirname):
     page_token = None
