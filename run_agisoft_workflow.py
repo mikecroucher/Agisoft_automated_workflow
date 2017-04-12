@@ -16,7 +16,8 @@ chunk = PhotoScan.app.document.addChunk()
 doc.save(path = "project.psz", chunks = [chunk])
 
 # Add all photos in input_directory to current chunk
-photo_files = [file.path for file in os.scandir(input_directory) if file.path.endswith('.JPG')]
+photo_files = [file.path for file in os.scandir(input_directory) if (file.path.endswith('.JPG') or file.path.endswith('.jpg'))]
+print("{0} photos found".format(len(photo_files)))
 chunk.addPhotos(photo_files)
 
 # Align cameras
