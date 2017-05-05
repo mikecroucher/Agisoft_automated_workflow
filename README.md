@@ -1,5 +1,29 @@
 # Agisoft_automated_workflow
 
+## How to use on ShARC
+
+* Log in and start a `qrshx` session.
+* Download the scripts
+
+```
+git clone https://github.com/mikecroucher/Agisoft_automated_workflow
+```
+
+* Rename the folder to whatever you are working on. For example, `star_garter`
+
+```
+mv Agisoft_automated_workflow star_garter
+```
+
+* Enter the newly renamed directory
+
+```
+cd star_garter
+```
+
+* Edit the file `run_photoscan_job.sh` (TO DO...CHANGE THIS SCRIPT SO THAT IT IS MORE OBVIOUS WHERE TO EDIT)
+
+## Timings
 For the test case given to me by Bryony, the Densepointcloud build step took the longest amount of time.
 On my mac, using the windows partition, that step reported the following performance characteristics for around 49 photos
 
